@@ -13,7 +13,7 @@
 <mat-card *ngIf="weatherData; else noWeatherData">
   <mat-card-header>
     <mat-card-title>{{weatherData.name}}</mat-card-title>
-    <mat-card-subtitle>{{weatherData.weather[0]?.main}}</mat-card-subtitle>
+    <mat-card-subtitle>{{weatherData.weather[0].main}}</mat-card-subtitle>
   </mat-card-header>
   <mat-card-content>
     <div>Temperature: {{weatherData.main.temp}}; Feels like: {{weatherData.main.feels_like}}</div>
