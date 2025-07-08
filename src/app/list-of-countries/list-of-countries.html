@@ -2,10 +2,16 @@
   <button (click)="onToggleView()">
     Switch to {{ viewMode === 'list' ? 'Grid' : 'List' }} View
   </button>
+  <input
+    type="text"
+    placeholder="Search by name..."
+    [(ngModel)]="searchTerm"
+    (input)="onSearchChange()"
+  />
 </mat-toolbar>
 
 <div class="list-wrapper">
-  <ng-container *ngIf="listOfCountries$ | async as countries">
+  <ng-container *ngIf="filteredCountries$ | async as countries">
     <div
       class="country-container"
       [ngClass]="viewMode"
@@ -15,7 +21,7 @@
         *ngFor="let country of countries; trackBy: countryName"
         (click)="onCountrySelected(country)"
       >
-        {{ country.iso2 }} - {{ country.country }}
+        {{ country.iso3 }} - {{ country.country }}
       </div>
     </div>
   </ng-container>

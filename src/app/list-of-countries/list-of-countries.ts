@@ -1,20 +1,36 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, OnDestroy, OnInit} from '@angular/core';
 import {FetchCountries} from '../api-services/fetch-countries';
 import {CommonModule} from '@angular/common';
 import {Country} from '../models/countries.model';
-import {Observable} from 'rxjs';
+import {BehaviorSubject, combineLatest, map, Observable, Subject, takeUntil} from 'rxjs';
 import {Router} from '@angular/router';
 import {MatToolbar} from '@angular/material/toolbar';
+import {FormsModule} from '@angular/forms';
 
 @Component({
   selector: 'app-list-of-countries',
-  imports: [CommonModule, MatToolbar,],
+  imports: [CommonModule, MatToolbar, FormsModule],
   templateUrl: './list-of-countries.html',
   styleUrl: './list-of-countries.css'
 })
-export class ListOfCountries implements OnInit {
+export class ListOfCountries implements OnInit, OnDestroy {
   viewMode: 'grid' | 'list' = 'list';
-  listOfCountries$: Observable<Country[]> | undefined;
+  searchTerm: string = '';
+  destroy$: Subject<void> = new Subject<void>();
+
+  private countries$ = new BehaviorSubject<Country[]>([]);
+  private searchTerm$ = new BehaviorSubject<string>('');
+
+  filteredCountries$: Observable<Country[]> = combineLatest([
+    this.countries$,
+    this.searchTerm$
+  ]).pipe(
+    map(([countries, term]) =>
+      countries.filter((country: Country) =>
+        country.country.toLowerCase().includes(term.toLowerCase())
+      )
+    )
+  );
 
   constructor(public fetchCountries: FetchCountries,
               private router: Router,) {
@@ -24,8 +40,21 @@ export class ListOfCountries implements OnInit {
     this.getListOfCountries();
   }
 
+  ngOnDestroy() {
+    this.destroy$.next();
+    this.destroy$.complete();
+  }
+
+  public onSearchChange() {
+    this.searchTerm$.next(this.searchTerm);
+  }
+
   private getListOfCountries() {
-    this.listOfCountries$ = this.fetchCountries.getListOfCountries();
+    this.fetchCountries.getListOfCountries().pipe(
+      takeUntil(this.destroy$),
+    ).subscribe(countries => {
+      this.countries$.next(countries);
+    });
   }
 
   onCountrySelected(country: Country) {
