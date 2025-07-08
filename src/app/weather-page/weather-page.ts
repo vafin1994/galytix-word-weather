@@ -19,6 +19,12 @@ export class WeatherPage implements OnInit {
 
   uomValue: 'metric' | 'imperial' = 'metric'
 
+  uomTemperature = {
+    imperial :'°F',
+    metric: '°C'
+  };
+
+
   weatherData: WeatherData | undefined;
 
   constructor(private activatedRoute: ActivatedRoute,
@@ -38,6 +44,7 @@ export class WeatherPage implements OnInit {
   }
 
   changeUnitsOfMeasure(unitsOfMeasure: 'metric' | 'imperial') {
+    this.uomValue = unitsOfMeasure;
     const country = this.activatedRoute.snapshot.params['country'];
     this.fetchWeather.fetchWeatherForCountry(country, unitsOfMeasure).pipe(
       take(1),

@@ -16,7 +16,7 @@
     <mat-card-subtitle>{{weatherData.weather[0].main}}</mat-card-subtitle>
   </mat-card-header>
   <mat-card-content>
-    <div>Temperature: {{weatherData.main.temp}}; Feels like: {{weatherData.main.feels_like}}</div>
+    <div>Temperature: {{weatherData.main.temp}} {{uomTemperature[this.uomValue]}} ; Feels like: {{weatherData.main.feels_like}}{{uomTemperature[this.uomValue]}}</div>
     <div>Pressure: {{weatherData.main.pressure}}</div>
     <div>Humidity: {{weatherData.main.humidity}}</div>
   </mat-card-content>
