@@ -1,7 +1,23 @@
-<div *ngIf="listOfCountries$ | async as countries">
-  <div *ngFor="let country of countries; trackBy: countryName">
-    <div (click)="onCountrySelected(country)">
-      {{ country.iso2 }} - {{ country.country }}
+<mat-toolbar>
+  <button (click)="onToggleView()">
+    Switch to {{ viewMode === 'list' ? 'Grid' : 'List' }} View
+  </button>
+</mat-toolbar>
+
+<div class="list-wrapper">
+  <ng-container *ngIf="listOfCountries$ | async as countries">
+    <div
+      class="country-container"
+      [ngClass]="viewMode"
+    >
+      <div
+        class="country-card"
+        *ngFor="let country of countries; trackBy: countryName"
+        (click)="onCountrySelected(country)"
+      >
+        {{ country.iso2 }} - {{ country.country }}
+      </div>
     </div>
-  </div>
+  </ng-container>
 </div>
+

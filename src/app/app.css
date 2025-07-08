@@ -1,0 +1,11 @@
+mat-toolbar {
+  position: fixed;
+  height: 60px;
+  background: rebeccapurple;
+  color: white;
+  z-index: 100;
+}
+
+.main-wrapper {
+  padding-top: 60px;
+}

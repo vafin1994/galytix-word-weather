@@ -1,0 +1,36 @@
+mat-toolbar{
+  position: fixed;
+  height: 50px;
+  background: antiquewhite;
+  padding: 0 50px;
+}
+
+.list-wrapper{
+  padding-top: 60px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.country-container{
+  width: 100%;
+  padding: 0 50px 50px 50px;
+}
+
+.country-container.list {
+  display: flex;
+  flex-direction: column;
+}
+
+.country-container.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+  gap: 1rem;
+}
+
+.country-card {
+  padding: 0.5rem;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  cursor: pointer;
+}
