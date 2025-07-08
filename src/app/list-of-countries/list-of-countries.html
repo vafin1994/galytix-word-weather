@@ -1,5 +1,7 @@
 <div *ngIf="listOfCountries$ | async as countries">
   <div *ngFor="let country of countries; trackBy: countryName">
-    {{ country.iso2 }} - {{ country.country }}
+    <div (click)="onCountrySelected(country)">
+      {{ country.iso2 }} - {{ country.country }}
+    </div>
   </div>
 </div>

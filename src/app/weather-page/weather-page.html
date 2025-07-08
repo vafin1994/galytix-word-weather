@@ -1,1 +1,7 @@
-<p>weather-page works!</p>
+<div *ngIf="weatherData; else noWeatherData">
+  {{ weatherData | json }}
+</div>
+
+<ng-template #noWeatherData>
+  Sorry, there is no weather data for this country.
+</ng-template>
