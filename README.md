@@ -1,0 +1,1 @@
+# galytix-word-weather
