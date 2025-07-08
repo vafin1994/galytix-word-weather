@@ -1,7 +1,33 @@
-<div *ngIf="weatherData; else noWeatherData">
-  {{ weatherData | json }}
-</div>
+<mat-toolbar>
+  <button matButton="elevated" (click)="onReturnButtonClicked()">
+    Return to the list
+  </button>
+
+  <span>Units of measure  <mat-button-toggle-group [value]="uomValue" (change)="changeUnitsOfMeasure($event.value)"  aria-label="Font Style">
+    <mat-button-toggle value="metric">Metric</mat-button-toggle>
+    <mat-button-toggle value="imperial">Imperial</mat-button-toggle>
+  </mat-button-toggle-group></span>
+
+</mat-toolbar>
+
+<mat-card *ngIf="weatherData; else noWeatherData">
+  <mat-card-header>
+    <mat-card-title>{{weatherData.name}}</mat-card-title>
+    <mat-card-subtitle>{{weatherData.weather[0]?.main}}</mat-card-subtitle>
+  </mat-card-header>
+  <mat-card-content>
+    <div>Temperature: {{weatherData.main.temp}}; Feels like: {{weatherData.main.feels_like}}</div>
+    <div>Pressure: {{weatherData.main.pressure}}</div>
+    <div>Humidity: {{weatherData.main.humidity}}</div>
+  </mat-card-content>
+
+</mat-card>
+
 
 <ng-template #noWeatherData>
-  Sorry, there is no weather data for this country.
+  <div style="padding: 50px">
+    Sorry, there is no weather data for this country. Please
+    <a class="returnLink" (click)="onReturnButtonClicked()">return to countries list</a>
+  </div>
+
 </ng-template>

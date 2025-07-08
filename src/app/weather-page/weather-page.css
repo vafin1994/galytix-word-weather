@@ -1,0 +1,8 @@
+mat-toolbar {
+  gap: 2rem
+}
+
+.returnLink {
+  color: blue;
+  cursor: pointer;
+}
