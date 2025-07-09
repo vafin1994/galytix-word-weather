@@ -3,25 +3,42 @@
     Return to the list
   </button>
 
-  <span>Units of measure  <mat-button-toggle-group [value]="uomValue" (change)="changeUnitsOfMeasure($event.value)"  aria-label="Font Style">
+  <span>Units of measure  <mat-button-toggle-group [value]="uomValue" (change)="changeUnitsOfMeasure($event.value)"
+                                                   aria-label="Font Style">
     <mat-button-toggle value="metric">Metric</mat-button-toggle>
     <mat-button-toggle value="imperial">Imperial</mat-button-toggle>
   </mat-button-toggle-group></span>
 
 </mat-toolbar>
 
-<mat-card *ngIf="weatherData; else noWeatherData">
-  <mat-card-header>
-    <mat-card-title>{{weatherData.name}}</mat-card-title>
-    <mat-card-subtitle>{{weatherData.weather[0].main}}</mat-card-subtitle>
-  </mat-card-header>
-  <mat-card-content>
-    <div>Temperature: {{weatherData.main.temp}} {{uomTemperature[this.uomValue]}} ; Feels like: {{weatherData.main.feels_like}}{{uomTemperature[this.uomValue]}}</div>
-    <div>Pressure: {{weatherData.main.pressure}}</div>
-    <div>Humidity: {{weatherData.main.humidity}}</div>
-  </mat-card-content>
+<div class="weather-card-wrapper">
+  <mat-card *ngIf="weatherData; else noWeatherData">
+    <mat-card-header>
+      <mat-card-title>{{ weatherData.name }}</mat-card-title>
+      <mat-card-subtitle>{{ weatherData.weather[0].main }}</mat-card-subtitle>
+    </mat-card-header>
+    <mat-card-content>
+      <div style="display: flex; justify-content: flex-start; gap: 2rem">
+        <app-temperature-card *ngIf="weatherData.main"
+                              [unitOfMeasure]="uomValue"
+                              [temp]=weatherData.main.temp
+                              [temp_max]=weatherData.main.temp_max
+                              [temp_min]=weatherData.main.temp_min
+                              [feels_like]=weatherData.main.feels_like
+        ></app-temperature-card>
+        <app-pressure-card [pressureValue]="weatherData.main.pressure">
+        </app-pressure-card>
+        <app-humidity-card [humidityValue]="weatherData.main.humidity">
 
-</mat-card>
+        </app-humidity-card>
+      </div>
+      <div>
+        <app-map-card></app-map-card>
+      </div>
+
+    </mat-card-content>
+  </mat-card>
+</div>
 
 
 <ng-template #noWeatherData>
@@ -31,3 +48,4 @@
   </div>
 
 </ng-template>
+

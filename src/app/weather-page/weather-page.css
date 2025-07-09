@@ -2,6 +2,13 @@ mat-toolbar {
   gap: 2rem
 }
 
+.weather-card-wrapper{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding-top: 1rem;
+}
+
 .returnLink {
   color: blue;
   cursor: pointer;

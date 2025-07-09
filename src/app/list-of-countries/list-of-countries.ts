@@ -1,4 +1,4 @@
-import {Component, OnDestroy, OnInit} from '@angular/core';
+import {ChangeDetectionStrategy, Component, OnDestroy, OnInit} from '@angular/core';
 import {FetchCountries} from '../api-services/fetch-countries';
 import {CommonModule} from '@angular/common';
 import {Country} from '../models/countries.model';
@@ -11,7 +11,8 @@ import {FormsModule} from '@angular/forms';
   selector: 'app-list-of-countries',
   imports: [CommonModule, MatToolbar, FormsModule],
   templateUrl: './list-of-countries.html',
-  styleUrl: './list-of-countries.css'
+  styleUrl: './list-of-countries.css',
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class ListOfCountries implements OnInit, OnDestroy {
   viewMode: 'grid' | 'list' = 'list';

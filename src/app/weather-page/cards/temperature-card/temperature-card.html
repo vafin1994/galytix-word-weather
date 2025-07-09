@@ -1,0 +1,15 @@
+<mat-card>
+  <mat-card-header>
+    <mat-card-title>
+      Temperature
+    </mat-card-title>
+  </mat-card-header>
+
+  <mat-card-content>
+    <div>Current: {{temp }} {{ uomTemperature[unitOfMeasure] }}</div>
+    <div>Feels like: {{feels_like }} {{ uomTemperature[unitOfMeasure] }}</div>
+    <div>Min temperature: {{temp_min }} {{ uomTemperature[unitOfMeasure] }}</div>
+    <div>Max temperature: {{temp_max }} {{ uomTemperature[unitOfMeasure] }}</div>
+  </mat-card-content>
+
+</mat-card>

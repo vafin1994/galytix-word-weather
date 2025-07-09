@@ -1,4 +1,4 @@
-import {Component, OnInit} from '@angular/core';
+import {ChangeDetectionStrategy, ChangeDetectorRef, Component, OnInit} from '@angular/core';
 import {ActivatedRoute, Data, Router} from '@angular/router';
 import {WeatherData} from '../models/weather.model';
 import {CommonModule} from '@angular/common';
@@ -8,28 +8,27 @@ import {MatCardModule} from '@angular/material/card';
 import {FetchWeather} from '../api-services/fetch-weather';
 import {take} from 'rxjs';
 import {MatButtonToggleModule} from '@angular/material/button-toggle';
+import {TemperatureCard} from './cards/temperature-card/temperature-card';
+import {PressureCard} from './cards/pressure-card/pressure-card';
+import {HumidityCard} from './cards/humidity-card/humidity-card';
+import {MapCard} from './cards/map-card/map-card';
 
 @Component({
   selector: 'app-weather-page',
-  imports: [CommonModule, MatToolbarModule, MatButtonModule, MatCardModule, MatButtonToggleModule],
+  imports: [CommonModule, MatToolbarModule, MatButtonModule, MatCardModule, MatButtonToggleModule, TemperatureCard, PressureCard, HumidityCard, MapCard],
   templateUrl: './weather-page.html',
-  styleUrl: './weather-page.css'
+  styleUrl: './weather-page.css',
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class WeatherPage implements OnInit {
 
   uomValue: 'metric' | 'imperial' = 'metric'
-
-  uomTemperature = {
-    imperial :'°F',
-    metric: '°C'
-  };
-
-
   weatherData: WeatherData | undefined;
 
   constructor(private activatedRoute: ActivatedRoute,
               private router: Router,
-              private fetchWeather: FetchWeather) {
+              private fetchWeather: FetchWeather,
+              private cd: ChangeDetectorRef) {
   }
 
   ngOnInit() {
@@ -51,6 +50,7 @@ export class WeatherPage implements OnInit {
     ).subscribe(
       (response: WeatherData) => {
         this.weatherData = response;
+        this.cd.markForCheck();
       }
     );
   }
