@@ -1,13 +1,18 @@
 <mat-toolbar>
-  <button (click)="onToggleView()">
-    Switch to {{ viewMode === 'list' ? 'Grid' : 'List' }} View
-  </button>
-  <input
-    type="text"
-    placeholder="Search by name..."
-    [(ngModel)]="searchTerm"
-    (input)="onSearchChange()"
-  />
+  <mat-toolbar-row style="display: flex; justify-content: space-between">
+    <div>
+      <mat-label style="font-size: medium; margin-right: 1rem">Search by name:</mat-label>
+      <input
+        type="text"
+        placeholder="Start typing..."
+        [(ngModel)]="searchTerm"
+        (input)="onSearchChange()"
+      />
+    </div>
+    <button matButton="filled" (click)="onToggleView()">
+      Switch to {{ viewMode === 'list' ? 'Grid' : 'List' }} View
+    </button>
+  </mat-toolbar-row>
 </mat-toolbar>
 
 <div class="list-wrapper">

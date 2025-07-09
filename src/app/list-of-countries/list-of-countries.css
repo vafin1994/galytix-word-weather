@@ -1,12 +1,12 @@
 mat-toolbar{
   position: fixed;
-  height: 50px;
+  height: 60px;
   background: antiquewhite;
   padding: 0 50px;
 }
 
 .list-wrapper{
-  padding-top: 60px;
+  padding-top: 80px;
   display: flex;
   justify-content: center;
   align-items: center;

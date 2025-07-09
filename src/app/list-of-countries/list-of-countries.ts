@@ -4,12 +4,15 @@ import {CommonModule} from '@angular/common';
 import {Country} from '../models/countries.model';
 import {BehaviorSubject, combineLatest, map, Observable, Subject, takeUntil} from 'rxjs';
 import {Router} from '@angular/router';
-import {MatToolbar} from '@angular/material/toolbar';
+import {MatToolbar, MatToolbarModule} from '@angular/material/toolbar';
 import {FormsModule} from '@angular/forms';
+import {MatFormField, MatInput, MatLabel} from '@angular/material/input';
+import {MatButton} from '@angular/material/button';
+import {MatRow} from '@angular/material/table';
 
 @Component({
   selector: 'app-list-of-countries',
-  imports: [CommonModule, MatToolbar, FormsModule],
+  imports: [CommonModule, FormsModule, MatButton, MatLabel, MatToolbarModule],
   templateUrl: './list-of-countries.html',
   styleUrl: './list-of-countries.css',
   changeDetection: ChangeDetectionStrategy.OnPush

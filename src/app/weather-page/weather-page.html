@@ -3,8 +3,11 @@
     Return to the list
   </button>
 
-  <span>Units of measure  <mat-button-toggle-group [value]="uomValue" (change)="changeUnitsOfMeasure($event.value)"
-                                                   aria-label="Font Style">
+  <span style="font-size: medium">
+    <span style="margin-right: 1rem">Units of measure</span>
+    <mat-button-toggle-group [value]="uomValue"
+                             (change)="changeUnitsOfMeasure($event.value)"
+                             aria-label="Font Style">
     <mat-button-toggle value="metric">Metric</mat-button-toggle>
     <mat-button-toggle value="imperial">Imperial</mat-button-toggle>
   </mat-button-toggle-group></span>

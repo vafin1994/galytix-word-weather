@@ -10,5 +10,5 @@ import {MatCard} from '@angular/material/card';
   styleUrl: './app.css'
 })
 export class App {
-  protected title = 'Galytix Word Weather';
+  protected title = 'Galytix World Weather';
 }
