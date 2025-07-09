@@ -32,8 +32,13 @@
         <app-pressure-card [pressureValue]="weatherData.main.pressure">
         </app-pressure-card>
         <app-humidity-card [humidityValue]="weatherData.main.humidity">
-
         </app-humidity-card>
+        <app-wind-card
+          [speed]="weatherData.wind.speed"
+          [direction]="weatherData.wind.deg"
+          [gust]="weatherData.wind.gust"
+          [unitOfMeasure]="uomValue"
+        ></app-wind-card>
       </div>
       <div>
         <app-map-card [coord]="{lat: weatherData.coord.lat, lng: weatherData.coord.lon}"></app-map-card>

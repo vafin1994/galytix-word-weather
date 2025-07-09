@@ -12,10 +12,11 @@ import {TemperatureCard} from './cards/temperature-card/temperature-card';
 import {PressureCard} from './cards/pressure-card/pressure-card';
 import {HumidityCard} from './cards/humidity-card/humidity-card';
 import {MapCard} from './cards/map-card/map-card';
+import {WindCard} from './cards/wind-card/wind-card';
 
 @Component({
   selector: 'app-weather-page',
-  imports: [CommonModule, MatToolbarModule, MatButtonModule, MatCardModule, MatButtonToggleModule, TemperatureCard, PressureCard, HumidityCard, MapCard],
+  imports: [CommonModule, MatToolbarModule, MatButtonModule, MatCardModule, MatButtonToggleModule, TemperatureCard, PressureCard, HumidityCard, MapCard, WindCard],
   templateUrl: './weather-page.html',
   styleUrl: './weather-page.css',
   changeDetection: ChangeDetectionStrategy.OnPush
