@@ -21,7 +21,7 @@
       <mat-card-subtitle>{{ weatherData.weather[0].main }}</mat-card-subtitle>
     </mat-card-header>
     <mat-card-content>
-      <div style="display: flex; justify-content: flex-start; gap: 2rem">
+      <div class="widget-wrapper">
         <app-temperature-card *ngIf="weatherData.main"
                               [unitOfMeasure]="uomValue"
                               [temp]=weatherData.main.temp

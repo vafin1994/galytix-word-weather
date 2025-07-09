@@ -2,11 +2,19 @@ mat-toolbar {
   gap: 2rem
 }
 
-.weather-card-wrapper{
+.weather-card-wrapper {
   display: flex;
   align-items: center;
   justify-content: center;
   padding-top: 1rem;
+}
+
+.widget-wrapper {
+  display: flex;
+  justify-content: flex-start;
+  gap: 2rem;
+  flex-wrap: wrap;
+  margin-top: 1rem
 }
 
 .returnLink {
