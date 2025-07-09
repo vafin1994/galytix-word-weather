@@ -33,7 +33,7 @@
         </app-humidity-card>
       </div>
       <div>
-        <app-map-card></app-map-card>
+        <app-map-card [coord]="{lat: weatherData.coord.lat, lng: weatherData.coord.lon}"></app-map-card>
       </div>
 
     </mat-card-content>
